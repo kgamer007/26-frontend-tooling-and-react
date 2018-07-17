@@ -57,12 +57,18 @@ class App extends React.Component {
     this.setState((previousState) => {
       const firstItems = previousState.firstItems.concat(this.state.first);
       const secondItems = previousState.secondItems.concat(this.state.second);
+      const map = Object.assign(this.state.map);
+      map[this.state.first] = true;
+      const compare = secondItems.filter(w => map[w]);
+      const message = compare.length ? compare.join(', ') : this.state.cowsays;
       // TODO: change the message property
       return {
         firstItems,
         secondItems,
         first: '',
         second: '',
+        map,
+        message,
       };
     });
   }
