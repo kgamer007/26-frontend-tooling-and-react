@@ -34,6 +34,9 @@ class App extends React.Component {
 
   handleCounterDecrement() {
     this.setState((previousState) => {
+      if (typeof previousState.counter === 'string') {
+        previousState.counter = parseInt(previousState.counter, 10);
+      }
       return {
         counter: previousState.counter - 1,
       };
@@ -57,39 +60,32 @@ class App extends React.Component {
     this.setState((previousState) => {
       const firstItems = previousState.firstItems.concat(this.state.first);
       const secondItems = previousState.secondItems.concat(this.state.second);
-      const map = Object.assign(this.state.map);
-      map[this.state.first] = true;
-      const compare = secondItems.filter(w => map[w]);
-      const message = compare.length ? compare.join(', ') : this.state.cowsays;
+      const messageItems = this.getIntersection(firstItems, secondItems);
       // TODO: change the message property
       return {
         firstItems,
         secondItems,
         first: '',
         second: '',
-        map,
-        message,
+        message: messageItems,
       };
     });
   }
 
   // TODO
   getIntersection = (arr1, arr2) => {
-    const a = [1, 2, 3, 4, 5, 6, 7, 8];
-    const b = [5, 3, 1, 2, 9, 15, 11];
-    const solutionWithObject = () => {
-      const map = arr1.reduce((storage, current) => {
-        if (!storage[current]) {
-          storage[current] = true;
-        }
-        return storage;
-      }, {});
-      console.log(map); // eslint-disable-line
-    
-      return arr2.filter(num => map[num]);
-    };
-    console.log(solutionWithObject(a, b)); // eslint-disable-line
-  }
+    const map = arr1.reduce((storage, current) => {
+      if (!storage[current]) {
+        storage[current] = true;
+      }
+      return storage;
+    }, {});
+    const message = arr2.filter(word => map[word]);
+    if (message.length === 0) {
+      return 'Now app will not break if inputs dont match on first submit';
+    } 
+    return message.join(', ');
+  };
 
   render() {
     return (
