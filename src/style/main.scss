@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+$knewave: 'Knewave';
+
+body {
+  font-family: $knewave;
+  background-color: rgb(152, 12, 180);
+  color: rgb(253, 253, 253);
+
+  .cowsay {
+    label, input {
+      display: block;
+    }
+    ul { 
+      display: inline-block;
+    }
+  }
+}

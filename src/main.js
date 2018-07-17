@@ -73,6 +73,7 @@ class App extends React.Component {
     });
   }
 
+  // TODO
   getIntersection = (arr1, arr2) => {
     const a = [1, 2, 3, 4, 5, 6, 7, 8];
     const b = [5, 3, 1, 2, 9, 15, 11];
@@ -132,7 +133,6 @@ class App extends React.Component {
           </pre>
           <div className="counter">
             <h2>The current value of the counter is: { this.state.counter} </h2>
-          {/* Below, we are using native DOM event API's that are abstracted away by React and using our methods we declared above as the new "onClick" and "onChange" handlers. Note that React camel cases all the event handler names, along with the above "class" being changed to "className" */}
             <button onClick={ this.handleCounterIncrement}>Increment Counter!</button>
             <button onClick={ this.handleCounterDecrement}>Decrement Counter!</button>
             <input 

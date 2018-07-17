@@ -5,8 +5,8 @@ require('dotenv').config();
 const { DefinePlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const production = process.env.NODE_ENV === 'production'; // evals to a Boolean value
-
+const production = process.env.NODE_ENV === 'production'; // eslint-disable-line 
+// evals to a Boolean value
 const webpackConfig = module.exports = {};
 
 webpackConfig.entry = `${__dirname}/src/main.js`;
@@ -19,7 +19,7 @@ webpackConfig.output = {
 
 webpackConfig.plugins = [
   new HtmlWebpackPlugin({
-    title: 'Day 26 React App',
+    title: 'Cowsay React App!!',
   }),
   new DefinePlugin({
     API_URL: JSON.stringify(process.env.API_URL),
